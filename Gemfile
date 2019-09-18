@@ -57,3 +57,5 @@ gem "awesome_nested_set", "~> 3.2"
 gem "factory_bot_rails", "~> 5.0", :groups => [:development, :test]
 
 gem "pg", "~> 1.1"
+
+gem "pg_search", "~> 2.3"

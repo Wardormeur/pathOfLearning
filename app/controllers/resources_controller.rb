@@ -4,7 +4,12 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
+    if params[:name]
+      @resources = Resource.search_by_name(params[:name])
+    else 
+      @resources = Resource.all
+    end
+
   end
 
   # GET /resources/1

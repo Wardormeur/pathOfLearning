@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_09_14_154636) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "resources", force: :cascade do |t|
     t.string "url"
     t.string "type_of"
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 2019_09_14_154636) do
     t.integer "children_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "track_id"
-    t.integer "resource_id"
+    t.bigint "track_id"
+    t.bigint "resource_id"
     t.index ["resource_id"], name: "index_steps_on_resource_id"
     t.index ["track_id"], name: "index_steps_on_track_id"
   end

@@ -9,6 +9,12 @@ class ResourcesControllerTest < ActionDispatch::IntegrationTest
     get resources_url
     assert_response :success
   end
+  
+  test "should search for a specific resource" do
+    get resources_url(:name => "HTML")
+    assert_response :success
+    assert_select "a", 1
+  end
 
   test "should get new" do
     get new_resource_url
