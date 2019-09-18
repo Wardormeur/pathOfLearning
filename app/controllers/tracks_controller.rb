@@ -25,12 +25,12 @@ class TracksController < ApplicationController
   # POST /tracks.json
   def create
     @track = Track.new(track_params)
-
     respond_to do |format|
       if @track.save
         format.html { redirect_to @track, notice: 'Track was successfully created.' }
         format.json { render :show, status: :created, location: @track }
       else
+        byebug
         format.html { render :new }
         format.json { render json: @track.errors, status: :unprocessable_entity }
       end
@@ -69,6 +69,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:name)
+      params.require(:track).permit(:name, :language, :step => Step.attribute_names) 
     end
 end

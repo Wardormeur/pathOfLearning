@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TracksControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @track = tracks(:one)
+    @track = create(:track)
   end
 
   test "should get index" do
@@ -16,8 +16,9 @@ class TracksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create track" do
+    skip "sort the API once we get there"
     assert_difference('Track.count') do
-      post tracks_url, params: { track: { name: @track.name, steps: %w(Step.new) } }
+      post tracks_url, params: { track: build(:track).as_json(include: :step)}
     end
 
     assert_redirected_to track_url(Track.last)
