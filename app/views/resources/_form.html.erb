@@ -1,4 +1,4 @@
-<%= form_with(model: resource, local: true) do |form| %>
+<%= form_with(model: resource, local: true, :class => "ui form") do |form| %>
   <% if resource.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -10,8 +10,15 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= label_tag(:name, "Name") %>
+    <%= form.text_field(:name, :placeholder => "My first HTML tutorial") %>
+  </div>
+  <div class="field">
+    <%= label_tag(:url, "Url") %>
+    <%= form.url_field(:url, :placeholder => "http://mywebsite.com") %>
+  </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class=>"ui button"%>
   </div>
 <% end %>

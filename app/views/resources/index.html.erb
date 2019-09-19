@@ -1,30 +1,36 @@
-<p id="notice"><%= notice %></p>
-
+<%= render 'layouts/notice' unless notice.nil?%>
 <h1>Resources</h1>
 
-<%= form_tag(resources_url, method: "get") do %>
-  <%= label_tag(:name, "Search for:") %>
-  <%= text_field_tag(:name) %>
-  <%= submit_tag("Search") %>
+<%= form_tag(resources_url, method: "get", :class=> "ui form") do %>
+  <div class="ui action input">
+    <%= search_field_tag(:name, nil, :placeholder=>"Search for...") %>
+    <%= button_tag("Search", :class => "ui button") %>
+  </div>
 <% end %>
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @resources.each do |resource| %>
-      <tr>
-        <td><%= resource.name %></td>
-        <td><%= link_to 'Show', resource %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="ui cards">
+<% @resources.each do |resource| %>
+ <div class="card">
+   <div class="image">
+      <img class="image" src="https://placekitten.com/200/300">
+    </div>
+   <div class="content">
+      <div class="header">
+        <%= resource.name %>
+      </div>
+      <div class="meta">
+        <span class="date"><%= time_ago_in_words(resource.created_at)%></span>
+      </div>
+    </div>
+    <div class="extra content">
+      <div class="ui three buttons">
+        <td><%= link_to 'Show', resource, :class=>"ui basic green button" %></td>
+        <td><%= link_to 'Edit', edit_resource_path(resource), :class => "ui basic green button" %></td>
+        <td><%= link_to 'Remove', resource, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "ui basic red button" %></td>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
 
 <br>
 
