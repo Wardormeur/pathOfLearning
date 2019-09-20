@@ -26,7 +26,7 @@ class ResourcesControllerTest < ActionDispatch::IntegrationTest
       post resources_url, params: { resource: @resource.attributes } 
     end
 
-    assert_redirected_to resource_url(Resource.last)
+    assert_redirected_to resources_url
   end
 
   test "should show resource" do
@@ -41,7 +41,7 @@ class ResourcesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update resource" do
     patch resource_url(@resource), params: { resource: { name: "Resource 1" } }
-    assert_redirected_to resource_url(@resource)
+    assert_redirected_to resources_url
   end
 
   test "should destroy resource" do

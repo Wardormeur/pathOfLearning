@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_14_154636) do
+ActiveRecord::Schema.define(version: 2019_09_20_141220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,14 +26,12 @@ ActiveRecord::Schema.define(version: 2019_09_14_154636) do
   create_table "steps", force: :cascade do |t|
     t.integer "parent_id"
     t.string "name"
-    t.integer "lft"
-    t.integer "rgt"
-    t.integer "depth"
-    t.integer "children_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "track_id"
     t.bigint "resource_id"
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_steps_on_ancestry"
     t.index ["resource_id"], name: "index_steps_on_resource_id"
     t.index ["track_id"], name: "index_steps_on_track_id"
   end

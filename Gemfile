@@ -59,3 +59,5 @@ gem "factory_bot_rails", "~> 5.0", :groups => [:development, :test]
 gem "pg", "~> 1.1"
 
 gem "pg_search", "~> 2.3"
+
+gem "ancestry", "~> 3.0"

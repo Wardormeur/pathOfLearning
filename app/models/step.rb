@@ -1,5 +1,5 @@
 class Step < ApplicationRecord
-  acts_as_nested_set 
+  has_ancestry
   belongs_to :resource
   belongs_to :track, optional: true
   validates :resource, :presence => true
