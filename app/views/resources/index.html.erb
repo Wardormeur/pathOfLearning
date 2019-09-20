@@ -1,17 +1,20 @@
 <%= render 'layouts/notice' unless notice.nil?%>
-<h1>Resources</h1>
-
+<div class="row">
+  <h1>Resources</h1>
+</div>
+<div class="row">
 <%= form_tag(resources_url, method: "get", :class=> "ui form") do %>
   <div class="ui action input">
     <%= search_field_tag(:name, nil, :placeholder=>"Search for...") %>
     <%= button_tag("Search", :class => "ui button") %>
   </div>
 <% end %>
-<div class="ui cards">
+</div>
+<div class="ui row cards">
 <% @resources.each do |resource| %>
  <div class="card">
    <div class="image">
-      <img class="image" src="https://placekitten.com/200/300">
+      <img class="image" src="https://placekitten.com/300/200">
     </div>
    <div class="content">
       <div class="header">
@@ -22,10 +25,11 @@
       </div>
     </div>
     <div class="extra content">
-      <div class="ui three buttons">
-        <td><%= link_to 'Show', resource, :class=>"ui basic green button" %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource), :class => "ui basic green button" %></td>
-        <td><%= link_to 'Remove', resource, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "ui basic red button" %></td>
+      <div class="ui four buttons">
+        <%= link_to 'Info', resource, :class=>"ui basic green button" %>
+        <%= link_to 'View', resource.url, :class=>"ui basic green button" %>
+        <%= link_to 'Edit', edit_resource_path(resource), :class => "ui basic green button" %>
+        <%= link_to 'Remove', resource, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "ui basic red button" %>
       </div>
     </div>
   </div>
@@ -33,5 +37,6 @@
 </div>
 
 <br>
-
-<%= link_to 'New Resource', new_resource_path %>
+<div class="row">
+  <%= link_to 'New Resource', new_resource_path %>
+</div>
