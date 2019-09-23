@@ -12,6 +12,9 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:11
+        environment:
+          POSTGRES_USER: pofl
+          POSTGRES_DB: test
 
     working_directory: ~/repo
 
@@ -30,6 +33,7 @@ jobs:
           command: |
             gem update bundler
             bundle install --force --jobs=4 --retry=3 --path vendor/bundle
+            yarn install --check-files
 
       - save_cache:
           paths:
