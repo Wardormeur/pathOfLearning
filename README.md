@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Deployment
+
+### First 
+https://devcenter.heroku.com/articles/getting-started-with-rails5#create-a-new-rails-app-or-upgrade-an-existing-one
