@@ -3,41 +3,69 @@ class Track {
     window.addEventListener('load', () => {
       const nodes = [];
       const edges = [];
-      /*var nodes = new vis.DataSet([
-        {id: 1, label: 'Node 1'},
-        {id: 2, label: 'Node 2'},
-        {id: 3, label: 'Node 3'},
-        {id: 4, label: 'Node 4'},
-        {id: 5, label: 'Node 5'}
-      ]);
-
-      // create an array with edges
-      var edges = new vis.DataSet([
-        {from: 1, to: 3},
-        {from: 1, to: 2},
-        {from: 2, to: 4},
-        {from: 2, to: 5},
-        {from: 3, to: 3}
-      ]);
-      */
 
       // create a network
       var container = document.getElementById('mynetwork');
       if (container) {
         track.forEach((step) => {
-          nodes.push({ id: step.id, label: step.name });
+          // const template = new NodeTemplate(step)
+          nodes.push({ id: step.id, 
+            label: step.name,
+            step: step,
+            //image: template.toSVG(), 
+            // shape: 'image', 
+            image: 'https://placekitten.com/300/200',
+            shape: 'image',
+            scaling: {
+              min: 30, 
+              max: 50,
+            }, 
+            fixed: true, // Only for preview
+          });
           if (step.parent_id) {
             edges.push({ from: step.parent_id, to: step.id });
           }
         });
+        nodes[0].x = 1;
+        nodes[0].y = 2;
         var data = {
           nodes: nodes,
           edges: edges
         };
-        var options = {};
+        var options = {
+          layout: {
+            hierarchical: { 
+              direction: 'UD',
+            }
+          }
+        };
         var network = new vis.Network(container, data, options);
+        network.on('click', (params) => {
+          const node = nodes.find(node => params.nodes[0] === node.id);
+          window.open(node.step.resource.url, '_blank');
+        });
       }
     });
   }
 }
+class NodeTemplate {
+  constructor(step) {
+    this.step = step;
+  }
+  toSVG() {
+     const template = `<svg xmlns="http://www.w3.org/2000/svg" width="390" height="65">
+          <foreignObject x="15" y="10" width="100%" height="100%">
+          <div xmlns="http://www.w3.org/1999/xhtml" >
+            <img src="https://placekitten.com/300/200"/>
+            <div class="content">
+              <h2>${this.step.name}</h2>
+            </div>
+          </div>
+          </foreignObject>
+          </svg>`;
+
+      return `data:image/svg+xml;charset=utf-8, ${encodeURIComponent(template)}`;
+  }
+}
+
 module.export = new Track();

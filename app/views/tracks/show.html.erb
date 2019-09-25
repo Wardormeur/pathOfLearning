@@ -1,10 +1,9 @@
 <%= render 'layouts/notice' unless notice.nil?%>
 <div class="row">
-<p>
-  <strong>Name:</strong>
-  <%= @track.name %>
-  <%#https://github.com/collectiveidea/awesome_nested_set/blob/master/lib/awesome_nested_set/helper.rb%>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @track.name %>
+  </p>
 </div>
 
 <div class="row">
@@ -16,5 +15,5 @@
 </div>
 <script>
   // TBD: fetch it to avoid js escape ?
-  window.track = <%= raw @track.step.subtree.to_json()%>
+  window.track = <%= raw @track.step.subtree.includes(:resource).to_json(:include => :resource) %>
 </script>

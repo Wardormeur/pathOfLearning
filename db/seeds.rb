@@ -13,6 +13,6 @@ unity_ch3 = Resource.create :url => "https://wireframe.rpf.io/3", :type_of => "p
 
 step1 = Step.create(:resource => unity_ch1)
 step1.children.create(:resource => unity_ch2, :name => "Fps part 2: jetpack")
-step1.children.create(:resource => unity_ch3)
+step1.children[0].children.create(:resource => unity_ch3)
 
 unity_track = Track.create :step => step1, :name => "Unity Beginner" # tags: fps, unity...
