@@ -1,17 +1,38 @@
 <%= render 'layouts/notice' unless notice.nil?%>
 <div class="row">
-  <p>
-    <strong>Name:</strong>
-    <%= @track.name %>
-  </p>
+  <div class="ui breadcrumb">
+    <%= link_to 'Home', tracks_path %>
+    <i class="right arrow icon divider"></i>
+    <a href="#">
+      <%= @track.name %>
+    </a>
+  </div>
 </div>
+<!-- 
+  Maybe we shouldn't show that to kids. Only in edit view?
+  <div class="row">
+  Estimated time: <%# @track.time %>
+</div>
+-->
 
 <div class="row">
   <div id="mynetwork"></div>
 </div>
 <div class="row">
-  <%= link_to 'Edit', edit_track_path(@track) %> |
-  <%= link_to 'Back', tracks_path %>
+  <span>
+    Tags: 
+    <%# recent tag ? %>
+    <a class="ui teal tag label" href="">Featured</a>
+    <a class="ui tag label" href="">Unity</a>
+    <a class="ui tag label">Game Dev</a>
+    <small>
+      <a href="/?">Search for similar tracks</a>
+    </small>
+  </span>
+</div>
+<div class="row">
+  <%= link_to 'Edit', edit_track_path(@track), :class=>"ui button basic secondary" %>
+  <%= link_to 'Remix', edit_track_path(@track), :class=>"ui button basic secondary" %> 
 </div>
 <script>
   // TBD: fetch it to avoid js escape ?

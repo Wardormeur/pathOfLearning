@@ -61,3 +61,5 @@ gem "pg", "~> 1.1"
 gem "pg_search", "~> 2.3"
 
 gem "ancestry", "~> 3.0"
+
+gem "pagy", "~> 3.5"

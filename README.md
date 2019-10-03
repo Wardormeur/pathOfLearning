@@ -22,6 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+## Jobs
+`ScrapRpfProjectsJob.perform_now`
 
 ## Deployment
 

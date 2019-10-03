@@ -1,4 +1,4 @@
-<%= form_with(model: track, local: true) do |form| %>
+<%= form_with(model: track, local: true, :class => "ui form") do |form| %>
   <% if track.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(track.errors.count, "error") %> prohibited this track from being saved:</h2>
@@ -16,7 +16,13 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="tree">
+    <div class="step--empty">
+      Drag and drop a resource here
+    </div>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "ui button primary" %>
   </div>
 <% end %>

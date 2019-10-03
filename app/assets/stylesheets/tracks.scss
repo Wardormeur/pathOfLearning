@@ -5,3 +5,16 @@
   height: 80vh;
   width: 80vw;
 }
+
+.tree {
+  .step {
+    &--empty {
+      display: flex;
+      min-width: 200px;
+      min-height: 150px;
+      border: dashed 1rem grey;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

@@ -5,9 +5,9 @@ class ResourcesController < ApplicationController
   # GET /resources.json
   def index
     if params[:name].present?
-      @resources = Resource.search_by_name(params[:name])
+      @pagy, @resources = pagy(Resource.search_by_name(params[:name]))
     else 
-      @resources = Resource.all
+      @pagy, @resources = pagy(Resource.all)
     end
 
   end

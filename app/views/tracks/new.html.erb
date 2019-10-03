@@ -1,5 +1,19 @@
-<h1>New Track</h1>
+<div class="row">
+  <h1>New Track</h1>
+</div>
+<div class="row">
+  <div class="ui two column grid">
+    <div class="four wide column">
+      <%= render "resources/dynamic_search" %>
+    </div>
+    <div class="eight wide column">
+      <div class="row">
+        <%= render 'form', track: @track %>
+      </div>
 
-<%= render 'form', track: @track %>
-
-<%= link_to 'Back', tracks_path %>
+      <div class="row">
+        <%= link_to 'Back', tracks_path %>
+      </div>
+    </div>
+  </div>
+</div>

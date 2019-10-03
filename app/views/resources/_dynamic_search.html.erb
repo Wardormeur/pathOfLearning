@@ -1,0 +1,21 @@
+<div class="row" id="search">
+<%= form_tag(resources_url(:format => :json), method: "get", :class=> "ui form", :remote => true) do %>
+  <div class="field">
+    <div class="ui fluid action input">
+      <%= search_field_tag(:name, nil, :placeholder=>"Search for...") %>
+      <%= button_tag("Search", :class => "ui button") %>
+    </div>
+  </div>
+<% end %>
+  <div class="errors">
+    <p class="error--initial">
+      Search for resources to include into your track
+    </p>
+    <p class="error--none transition hidden">
+      No resources found
+    </p>
+  </div>
+  <ul class="cards">
+  </ul>
+</div>
+
