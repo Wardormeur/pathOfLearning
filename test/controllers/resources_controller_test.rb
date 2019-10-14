@@ -10,10 +10,17 @@ class ResourcesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   
-  test "should search for a specific resource" do
+  test "should have no results on search" do
     get resources_url(:name => "HTML")
     assert_response :success
-    assert_select "a", 1
+    assert_select ".card", 0
+  end
+  
+  test "should have 1 result on search" do
+    get resources_url(:name => "tutorial")
+    assert_response :success
+    assert_select ".card", 1
+    assert_select ".card .header", "My tutorial" 
   end
 
   test "should get new" do
@@ -34,21 +41,18 @@ class ResourcesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should not be editable" do
     get edit_resource_url(@resource)
-    assert_response :success
+    assert_response :unauthorized
   end
 
-  test "should update resource" do
+  test "should not update resource" do
     patch resource_url(@resource), params: { resource: { name: "Resource 1" } }
-    assert_redirected_to resources_url
+    assert_response :unauthorized
   end
 
-  test "should destroy resource" do
-    assert_difference('Resource.count', -1) do
-      delete resource_url(@resource)
-    end
-
-    assert_redirected_to resources_url
+  test "should not destroy resource" do
+    delete resource_url(@resource)
+    assert_response :unauthorized  
   end
 end
