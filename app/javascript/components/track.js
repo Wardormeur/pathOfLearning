@@ -20,7 +20,7 @@ class Track {
       this.tree = d3.tree()
        .size([height, width]);
 
-      this.svg = d3.select('body > .container')
+      this.svg = d3.select('.row.track')
 	   .append('svg')
        .attr('width', width + margin.right + margin.left)
        .attr('height', height + margin.top + margin.bottom)

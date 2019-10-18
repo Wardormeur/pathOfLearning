@@ -1,39 +1,11 @@
 // Place all the styles related to the tracks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#mynetwork {
-  height: 80vh;
-  width: 80vw;
-}
-// Vis-network
-.tree {
-  .step {
-    &--empty {
-      display: flex;
-      min-width: 200px;
-      min-height: 150px;
-      border: dashed 1rem grey;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-}
 // d3
 .node {
     cursor: pointer;
 }
 
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3px;
-}
-
-.node .circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3px;
-}
 .node text {
   font: 12px sans-serif;
 }
