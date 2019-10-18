@@ -52,9 +52,6 @@ class Track {
     var node = this.svg.selectAll('g.node')
      .data(nodes, function(d) { return d.id || (d.id = ++i); });
   
-	/*node.append('circle')
-      .attr('fill', d => d.children ? '#555' : '#999')
-      .attr('r', 2.5);*/
 
     // Enter the nodes.
     var nodeEnter = node.enter().append('a')
@@ -67,15 +64,8 @@ class Track {
       .attr('width', config.img.width)
       .attr('height', config.img.height)
       .attr('xlink:href', `https://placekitten.com/${config.img.width}/${config.img.height}`)
-    /*append('circle')
-     .attr('r', 10)
-     .style('fill', '#fff');*/
 
     nodeEnter.append('text')
-     /*.attr('x', function(d) { 
-      return d.children || d._children ? -13 : 13; })
-     .attr('text-anchor', function(d) { 
-      return d.children || d._children ? 'end' : 'start'; })*/
      .attr('x', 100)
      .attr('y', config.img.height)
      .attr('dy', '1em')
@@ -92,14 +82,10 @@ class Track {
      .attr('d', this.vlink.bind(config));
 
   }
-  link(d) {
-    return `M${d.source.y},${d.source.x}C${(d.source.y + d.target.y) / 2},${d.source.x} ${(d.source.y + d.target.y) / 2},${d.target.x} ${d.target.y},${d.target.x}`;
-  }
   vlink(d) {
     const bottom = (this.img.height) + d.source.y;
     const middle = (this.img.width/2) + d.source.x;
     const center = (this.img.width + d.source.x + d.target.x) /2;
-    // return `M${d.source.x},${d.source.y}C${(d.source.x + d.target.x) / 2},${d.target.y} ${(d.source.x + d.target.x) / 2},${d.source.y} ${d.target.x},${d.target.y}`;
     return `M${middle},${bottom}C${center},${d.target.y} ${center},${bottom} ${d.target.x + this.img.width/2},${d.target.y}`;
   }
 }
