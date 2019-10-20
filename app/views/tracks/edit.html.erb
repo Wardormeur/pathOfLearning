@@ -1,6 +1,9 @@
 <h1>Editing Track</h1>
 
-<%= render 'form', track: @track %>
-
-<%= link_to 'Show', @track %> |
+<aside>
+  <%= render 'form', track: @track %>
+</aside>
+<article>
+  <%= link_to 'Show', @track %> |
+</article>
 <%= link_to 'Back', tracks_path %>

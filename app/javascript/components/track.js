@@ -47,31 +47,14 @@ class Track {
       // Might be an issue with multi-leaf
       d.x = d.x - config.img.width; 
     });
-
-    // Declare the nodes¦
-    var node = this.svg.selectAll('g.node')
-     .data(nodes, function(d) { return d.id || (d.id = ++i); });
-  
-
-    // Enter the nodes.
-    var nodeEnter = node.enter().append('a')
-     .attr('class', 'node')
-     .attr('xlink:href', d => d.data.resource.url)
-     .attr('transform', (d) => `translate(${d.x},${d.y})`);
-
-    nodeEnter.
-      append('svg:image')
+    this.svg.append('defs')
+    .append('clipPath')
+      .attr('id', 'corner_radius')
+    .append('path')
       .attr('width', config.img.width)
       .attr('height', config.img.height)
-      .attr('xlink:href', `https://placekitten.com/${config.img.width}/${config.img.height}`)
-
-    nodeEnter.append('text')
-     .attr('x', 100)
-     .attr('y', config.img.height)
-     .attr('dy', '1em')
-     .text((d) => d.data.name )
-     .style('fill-opacity', 1);
-
+      .attr('d', 'M0, 5 q0,5 5,0 h290 q5,0 5,5 v200 h-300 z')
+    
     // Declare the links!
     var link = this.svg.selectAll('path.link')
      .data(links, (d) => d.target.id);
@@ -81,6 +64,40 @@ class Track {
      .attr('class', 'link')
      .attr('d', this.vlink.bind(config));
 
+    // Declare the nodes¦
+    var node = this.svg.selectAll('g.node')
+     .data(nodes, function(d) { return d.id || (d.id = ++i); });
+    
+
+    // Enter the nodes.
+    let nodeEnter = node.enter().append('a')
+     .attr('class', 'node')
+     .attr('xlink:href', d => d.data.resource.url)
+     .attr('transform', (d) => `translate(${d.x},${d.y})`);
+     nodeEnter.
+      append('svg:image')
+      .attr('width', config.img.width)
+      .attr('height', config.img.height)
+      .attr('clip-path', 'url(#corner_radius)')
+      .attr('xlink:href', `https://placekitten.com/${config.img.width}/${config.img.height}`)
+
+    nodeEnter
+      .append('rect')
+       .attr('x', 0)
+       .attr('y', config.img.height)
+      .attr('stroke', 'black')
+      .attr('stroke-dasharray', '0,300,150')
+      .attr('width', config.img.width)
+      .attr('height', '2em')
+
+    nodeEnter.append('text')
+     .attr('x', 100)
+     .attr('y', config.img.height)
+     .attr('dy', '1em')
+     .text((d) => d.data.name )
+     .style('fill-opacity', 1);
+
+    
   }
   vlink(d) {
     const bottom = (this.img.height) + d.source.y;

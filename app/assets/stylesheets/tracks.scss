@@ -3,11 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // d3
 .node {
-    cursor: pointer;
+  cursor: pointer;
+  border: 1em solid black;
+  fill: white;
 }
 
 .node text {
-  font: 12px sans-serif;
+  font: 1em sans-serif ;
+  fill: black;
 }
 
 .link {
