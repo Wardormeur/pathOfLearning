@@ -25,6 +25,13 @@ Things you may want to cover:
 ## Jobs
 `ScrapRpfProjectsJob.perform_now`
 
+## Dev
+`docker-compose up` to get the dbs started (dev and test)
+`rails db:create && rails db:migrate && rails db:seed` will give you a fully fed env
+`rails s` finally to get the server running
+### Useful cmds
+  `rails db:drop && rails db:create && rails db:migrate && rails db:seed` to reseed everything. This also avoid you having to use `docker-compose down -v`
+
 ## Deployment
 
 ### First 

@@ -6,13 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# TODO: enforce URL
-unity_ch1 = Resource.create :url => "https://wireframe.rpf.io/1", :type_of => "pdf", :name => "Create a FPS - Part 1"
-unity_ch2 = Resource.create :url => "https://wireframe.rpf.io/2", :type_of => "pdf", :name => "Create a FPS - Part 2"
-unity_ch3 = Resource.create :url => "https://wireframe.rpf.io/3", :type_of => "pdf", :name => "Create a FPS - Part 3"
+ScrapRpfProjectsJob.perform_now
 
-step1 = Step.create(:resource => unity_ch1)
-step1.children.create(:resource => unity_ch2, :name => "Fps part 2: jetpack")
-step1.children[0].children.create(:resource => unity_ch3)
+step1 = Step.create(:resource => Resource.find(1))
+step1.children.create(:resource => Resource.find(2))
+step1.children[0].children.create(:resource => Resource.find(3))
 
 unity_track = Track.create :step => step1, :name => "Unity Beginner" # tags: fps, unity...
