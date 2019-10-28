@@ -18,6 +18,11 @@
     <%= label_tag(:url, "Url") %>
     <%= form.url_field(:url, :placeholder => "http://mywebsite.com") %>
   </div>
+  <!-- TODO: make that image field better? -->
+  <div class="field">
+    <%= label_tag(:image_url, "Image") %>
+    <%= form.url_field(:image_url, :placeholder => "http://placekitten.com/300/200") %>
+  </div>
   <div class="actions">
     <%= form.submit :class=>"ui button"%>
   </div>

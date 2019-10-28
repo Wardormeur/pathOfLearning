@@ -18,7 +18,12 @@ class ScrapRpfProjectsJob < ApplicationJob
       Resource.transaction do
         tutorials["data"].each do |tutorial|
           attr = tutorial["attributes"]
-          Resource.create :name => attr["content"]["title"], :type_of => "html", :url => "https://projects.raspberrypi.org/en/projects/#{attr["repositoryName"]}"
+          Resource.create(
+            :name => attr["content"]["title"],
+            :type_of => "html",
+            :url => "https://projects.raspberrypi.org/en/projects/#{attr["repositoryName"]}",
+            :image_url => attr["content"]["heroImage"],
+          )
         end
       end
       index += 1
