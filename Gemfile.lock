@@ -123,7 +123,7 @@ GEM
       activerecord (>= 4.2)
       activesupport (>= 4.2)
     public_suffix (4.0.1)
-    puma (3.12.1)
+    puma (3.12.4)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -231,7 +231,7 @@ DEPENDENCIES
   pagy (~> 3.5)
   pg (~> 1.1)
   pg_search (~> 2.3)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 6.0.0)
   sass-rails (~> 5)
   selenium-webdriver
